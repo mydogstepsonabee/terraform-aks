@@ -16,10 +16,10 @@ resource "azurerm_resource_group" "rg" {
 }
 
 resource "azurerm_kubernetes_cluster" "cluster" {
-  name       = "learnk8scluster"
-  location   = azurerm_resource_group.rg.location
+  name                = "learnk8scluster"
+  location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  dns_prefix = "learnk8scluster"
+  dns_prefix          = "learnk8scluster"
 
   default_node_pool {
     name       = "default"
@@ -28,5 +28,9 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   }
   identity {
     type = "SystemAssigned"
+  }
+
+  role_based_access_control {
+    enabled = true
   }
 }
